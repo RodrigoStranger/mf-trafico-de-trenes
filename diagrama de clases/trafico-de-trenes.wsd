@@ -1,35 +1,60 @@
 @startuml trafico de trenes
 
 class Tren {
-
+    -id: nat
+    -distanciaSeguridad: real
+    -Tipo: seq of char <<carga|transporte>>
+    +Tren(id: nat, Tipo: seq of char, distanciaSeguridad: real)
+    +desacelerar(): ()
+    +acelerar(): ()
+    +frenar(): ()
 }
 
 class TramoVia {
-
+    -ocupado: bool
+    -id: nat
+    -longitud: real
+    +TramoVia(id: nat, ocupado: bool, longitud: real)
+    +SetOcupado(ocupado: bool): ()
+    +notificarSistema(): ()
 }
 
 class Sensor {
-
+    #id: nat
+    #latitud: real 
+    #longitud: real 
+    #activo: bool
+    +Sensor(id: nat, latitud: real, longitud: real, activo: bool)
+    +SetActivo(activo: bool): ()
+    +enviarAlerta(alerta: Alerta): ()
 }
 
 class SensorTren {
-
+    +SensorTren(id: nat, tipo: seq of char, activo: bool)
+    +ActualizarUbicacion(latitud: real, longitud:real): ()
 }
 
 class SensorVia {
-
-}
-
-class Semaforo {
-
+    -ocupado: bool
+    +SensorVia(ocupado: bool, id: nat, tipo: seq of char, activo: bool)
+    +SetOcupadoVia(ocupado: bool): ()
+    +SetOcupadoSensor(ocupado: bool): ()
 }
 
 class Alerta {
-
+    -id: nat
+    -tipo: seq of char <<distancia_corta|via_ocupada>>
+    -mensaje: seq of char
+    -fechaHora: seq of char
+    +Alerta(id: nat, tipo: seq of char, mensaje: seq of char, fechaHora: seq of char)
 }
 
 class SistemaControl {
-
+    -Nombre: seq of char
+    +SistemaControl(Nombre: seq of char)
+    +emitirOrdenes(mensaje: seq of char): ()
+    +CalibrarVelocidad(TrenActual: Tren, TrenAdelante: Tren): ()
+    +CalibrarVelocidad(TrenActual: Tren, Via: TramoVia): ()
 }
 
 ' Herencia
@@ -41,11 +66,10 @@ SistemaControl "1" o-- "1..*" Tren : gestiona
 SistemaControl "1" o-- "1..*" TramoVia : monitorea 
 
 ' Relaciones entre entidades físicas
-TramoVia "1" -- "1..*" Semaforo : contiene 
 TramoVia "1" -- "1..*" SensorVia : equipa 
-Tren "1" -- "1" SensorTren : equipa
+Tren "1" -- "1..*" SensorTren : equipa
 
 ' Generación de alertas
-Sensor -- "0..*" Alerta : genera
+Sensor "1" -- "0..*" Alerta : genera
 
 @enduml
