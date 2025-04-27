@@ -43,7 +43,7 @@ SistemaControl "1" o-- "1..*" TramoVia : monitorea
 ' Relaciones entre entidades físicas
 TramoVia "1" -- "1..*" Semaforo : contiene 
 TramoVia "1" -- "1..*" SensorVia : equipa 
-Tren "1" -- "1..*" SensorTren : equipa
+Tren "1" -- "1" SensorTren : equipa
 
 ' Generación de alertas
 Sensor -- "0..*" Alerta : genera
