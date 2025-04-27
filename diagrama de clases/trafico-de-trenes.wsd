@@ -57,19 +57,15 @@ class SistemaControl {
     +CalibrarVelocidadTramo(TrenActual: Tren, Via: TramoVia): ()
 }
 
-' Herencia
 Sensor <|-- SensorTren
 Sensor <|-- SensorVia
 
-' Relaciones del sistema
 SistemaControl "1" o-- "1..*" Tren : gestiona 
 SistemaControl "1" o-- "1..*" TramoVia : monitorea 
 
-' Relaciones entre entidades físicas
 TramoVia "1" -- "1..*" SensorVia : equipa 
 Tren "1" -- "1..*" SensorTren : equipa
 
-' Generación de alertas
 Sensor "1" -- "0..*" Alerta : genera
 
 @enduml
