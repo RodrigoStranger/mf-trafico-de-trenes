@@ -1,4 +1,4 @@
-@startuml
+@startuml trafico de trenes
 
 class Tren {
     -id: nat
@@ -104,3 +104,5 @@ Tren "1" -- "1..*" SensorTren : equipa
 
 ' Generación de alertas
 Sensor -- "0..*" Alerta : genera
+
+@enduml
