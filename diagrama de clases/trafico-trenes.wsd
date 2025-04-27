@@ -1,0 +1,106 @@
+@startuml
+
+class Tren {
+    -id: nat
+    #ubicacion: seq of char
+    #velocidad: real
+    #direccion: seq of char
+    #estado: seq of char <<en_circulacion|detenido|frenando>>
+    -distanciaSeguridad: real
+    +Tren(id: nat, ubicacion: seq of char, velocidad: real, direccion: seq of char, estado: seq of char, distanciaSeguridad: real)
+    +detectarSemaforo(): ()
+    +actualizarUbicacion(): ()
+    +acelerar(): ()
+    +frenar(): ()
+    +enviarEstado(): ()
+}
+
+class TramoVia {
+    -id: nat
+    #estado: seq of char <<libre|ocupado|en_mantenimiento>>
+    #longitud: real
+    #velocidadPermitida: real
+    #estadoFisico: seq of char <<óptimo|dañado|reparación>>
+    -nivelDeRiesgo: nat
+    +TramoVia(id: nat, estado: seq of char, longitud: real, velocidadPermitida: real, estadoFisico: seq of char, nivelDeRiesgo: nat)
+    +actualizarEstado(): ()
+    +monitorear(): ()
+    +notificarSistema(): ()
+    +reportarFalla(): ()
+}
+
+class Sensor {
+    -id: nat
+    #tipo: seq of char <<presion|proximidad|vibracion>>
+    #ubicacion: seq of char
+    #activo: bool
+    +Sensor(id: nat, tipo: seq of char, ubicacion: seq of char, activo: bool)
+    +detectar(): ()
+    +enviarDatos(): ()
+}
+
+class SensorTren {
+    +identificacion: seq of char
+    +calibracion: real
+    +SensorTren(identificacion: seq of char, calibracion: real)
+    +detectarTrenes(): ()
+    +enviarDatos(): ()
+}
+
+class SensorVia {
+    +precision: real
+    +SensorVia(precision: real)
+    +detectarAnomalias(): ()
+    +enviarDatos(): ()
+}
+
+class Semaforo {
+    -id: nat
+    #estado: seq of char <<verde|rojo|amarillo>>
+    #posicion: seq of char
+    #tiempoCambio: nat
+    +Semaforo(id: nat, estado: seq of char, posicion: seq of char, tiempoCambio: nat)
+    +detectarTren(): bool
+    +cambiarEstado(): ()
+    +notificarControl(): ()
+}
+
+class Alerta {
+    -id: nat
+    #tipo: seq of char <<distancia_corta|via_ocupada|falla_estructura>>
+    #nivel: seq of char <<alto|medio|bajo>>
+    #mensaje: seq of char
+    #fechaHora: seq of char
+    +Alerta(id: nat, tipo: seq of char, nivel: seq of char, mensaje: seq of char, fechaHora: seq of char)
+    +generar(): ()
+    +enviarAlControl(): ()
+}
+
+class SistemaControl {
+    +registroTrenes: set of Tren
+    +SistemaControl()
+    +gestionarTrafico(): ()
+    +actualizarDatos(): ()
+    +procesarAlertas(): ()
+    +emitirOrdenes(): ()
+    +verificarIntegridad(): ()
+}
+
+' Herencia
+Sensor <|-- SensorTren
+Sensor <|-- SensorVia
+
+' Relaciones del sistema
+SistemaControl "1" o-- "1..*" Tren : gestiona 
+SistemaControl "1" o-- "1..*" TramoVia : monitorea 
+SistemaControl "1" o-- "1..*" Semaforo : controla 
+SistemaControl "1" o-- "1..*" Alerta : emite 
+SistemaControl "1" o-- "1..*" Sensor : utiliza 
+
+' Relaciones entre entidades físicas
+TramoVia "1" -- "1..*" Semaforo : contiene 
+TramoVia "1" -- "1..*" SensorVia : equipa 
+Tren "1" -- "1..*" SensorTren : equipa
+
+' Generación de alertas
+Sensor -- "0..*" Alerta : genera
