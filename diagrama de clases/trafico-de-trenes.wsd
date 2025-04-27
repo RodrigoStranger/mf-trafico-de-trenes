@@ -93,7 +93,6 @@ Sensor <|-- SensorVia
 ' Relaciones del sistema
 SistemaControl "1" o-- "1..*" Tren : gestiona 
 SistemaControl "1" o-- "1..*" TramoVia : monitorea 
-SistemaControl "1" o-- "1..*" Alerta : emite 
 
 ' Relaciones entre entidades físicas
 TramoVia "1" -- "1..*" Semaforo : contiene 
