@@ -1,0 +1,3 @@
+code --install-extension james-yu.latex-workshop
+code --install-extension tecosaur.latex-utilities
+code --install-extension tomoki1207.pdf

@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1745786252.69359 "main.aux" "main.bbl" "main" 1745786254.41047 0
+["bibtex main"] 1745786252.69359 "main.aux" "main.bbl" "main" 1745786538.83539 0
   "./citas.bib" 1745786214 1053 95e1c716f78c561e3b054b1841fb3068 ""
   "C:/Users/riexd/AppData/Roaming/MiKTeX/bibtex/bst/ieeetran/IEEEtran.bst" 1440622569 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "main.aux" 1745786253 3149 40069ab23749c77833da06c7584bef5c "pdflatex"
+  "main.aux" 1745786538 3149 40069ab23749c77833da06c7584bef5c "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1745786252.94861 "c:/Users/riexd/Documents/mf-trafico-de-trenes/Latex/main.tex" "main.pdf" "main" 1745786254.411 0
+["pdflatex"] 1745786537.50162 "c:/Users/riexd/Documents/mf-trafico-de-trenes/Latex/main.tex" "main.pdf" "main" 1745786538.83593 0
   "C:/Program Files/MiKTeX/fonts/enc/dvips/base/8r.enc" 1458473887 4993 80dc9bab7f31fb78a000ccfed0e27cab ""
   "C:/Program Files/MiKTeX/fonts/tfm/adobe/times/ptmb7t.tfm" 1136790254 2172 fd0c924230362ff848a33632ed45dc23 ""
   "C:/Program Files/MiKTeX/fonts/tfm/adobe/times/ptmb8r.tfm" 1136790254 4524 6bce29db5bc272ba5f332261583fee9c ""
@@ -116,11 +116,11 @@
   "C:/Users/riexd/AppData/Roaming/MiKTeX/tex/latex/refcount/refcount.sty" 1576433952 9878 9e94e8fa600d95f9c7731bb21dfb67a4 ""
   "C:/Users/riexd/AppData/Roaming/MiKTeX/tex/latex/relsize/relsize.sty" 1365244030 15542 c4cc3164fe24f2f2fbb06eb71b1da4c4 ""
   "C:/Users/riexd/AppData/Roaming/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1657800696 9714 ba3194bd52c8499b3f1e3eb91d409670 ""
-  "c:/Users/riexd/Documents/mf-trafico-de-trenes/Latex/main.tex" 1745786214 13853 f361ce8a0b206e59c0f6d4b98c6d8e98 ""
-  "main.aux" 1745786253 3149 40069ab23749c77833da06c7584bef5c "pdflatex"
+  "c:/Users/riexd/Documents/mf-trafico-de-trenes/Latex/main.tex" 1745786535 13853 f361ce8a0b206e59c0f6d4b98c6d8e98 ""
+  "main.aux" 1745786538 3149 40069ab23749c77833da06c7584bef5c "pdflatex"
   "main.bbl" 1745786252 2008 df347aaa3fdd43c2390404fbad449ad4 "bibtex main"
-  "main.out" 1745786253 3371 f316bd2290b989ab316b0b3557863451 "pdflatex"
-  "main.tex" 1745786214 13853 f361ce8a0b206e59c0f6d4b98c6d8e98 ""
+  "main.out" 1745786538 3371 f316bd2290b989ab316b0b3557863451 "pdflatex"
+  "main.tex" 1745786535 13853 f361ce8a0b206e59c0f6d4b98c6d8e98 ""
   (generated)
   "main.aux"
   "main.log"
