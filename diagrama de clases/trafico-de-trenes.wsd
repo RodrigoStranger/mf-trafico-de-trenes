@@ -54,7 +54,7 @@ class SistemaControl {
     +SistemaControl(Nombre: seq of char)
     +emitirOrdenes(mensaje: seq of char): ()
     +CalibrarVelocidad(TrenActual: Tren, TrenAdelante: Tren): ()
-    +CalibrarVelocidad(TrenActual: Tren, Via: TramoVia): ()
+    +CalibrarVelocidadTramo(TrenActual: Tren, Via: TramoVia): ()
 }
 
 ' Herencia
