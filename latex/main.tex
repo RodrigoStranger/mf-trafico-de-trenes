@@ -134,6 +134,40 @@ El sistema debe supervisar continuamente el estado de la infraestructura ferrovi
 \subsubsection{Verificación en tiempo real} 
 El sistema debe ser capaz de verificar en tiempo real las decisiones tomadas por los sensores y los semáforos, las acciones que se basen en datos correctos y precisos, y proporcionar informes de error si se detectan inconsistencias o fallos en el proceso.
 
+\section{Objetivos de la investigación}  
+\subsection{Objetivo general}  
+Diseñar un modelo formal con VDM++ que estructure y analice la información relacionada con la seguridad ferroviaria, incluyendo datos de ocupación de vías, distancias entre trenes y estados de sensores, para garantizar la precisión, coherencia e integridad de los datos utilizados en la prevención de colisiones. Esto facilitará un análisis preciso y sistemático, mejorando la identificación de situaciones de riesgo y estableciendo las bases para futuras herramientas de mejora en la seguridad ferroviaria.  
+
+\subsection{Objetivos Específicos}  
+
+\begin{itemize}  
+    \item Crear un modelo formal en VDM++ que organice y represente de manera precisa los datos de ocupación de vías y distancias entre trenes, asegurando la coherencia de la información en el análisis de la seguridad ferroviaria.  
+
+    \item Diseñar un procedimiento formal que evalúe la coherencia temporal de los eventos en el sistema de prevención de colisiones, verificando que las decisiones, como el ajuste de velocidad, se realicen en un orden lógico y consistente, y detectando posibles discrepancias en la comunicación del sistema.  
+
+    \item Desarrollar un método de validación que garantice que la información sobre la ocupación de vías y el estado del sistema no haya sido alterada ni corrompida, asegurando que los datos utilizados en el análisis de seguridad sean válidos y confiables en todas las etapas del procedimiento.  
+
+    \item Evaluar el impacto del modelo desarrollado en la precisión y eficiencia de la prevención de colisiones ferroviarias, estableciendo las bases para el desarrollo de futuras herramientas especializadas que optimicen el procesamiento y análisis de datos de seguridad ferroviaria.  
+\end{itemize}  
+
+\section{Metodología}  
+
+La presente investigación se enmarca en el contexto de la creciente necesidad de mejorar la seguridad ferroviaria, con énfasis en la prevención de colisiones. La elección de datos sobre ocupación de vías y distancias entre trenes como fuente primaria responde a su relevancia en la identificación de situaciones de riesgo y en la mejora de la gestión del tráfico ferroviario.  
+
+Se emplean técnicas avanzadas de formalización de software, específicamente el uso de VDM++ y model checking, que garantizan la consistencia y precisión en el análisis. Estas herramientas permiten modelar de manera adecuada las relaciones temporales y los eventos registrados, asegurando que las evidencias sean confiables y verificables en el ámbito de la seguridad ferroviaria, así como establecer un precedente para una construcción adecuada de estrategias de prevención.  
+
+El diseño cualitativo y el enfoque formal elegido se justifica por su capacidad de estructurar información compleja, ordinal y fragmentada, maximizando su validez para establecer conclusiones en los resultados obtenidos y contribuir al desarrollo de procedimientos estandarizados en el análisis de datos de seguridad ferroviaria.  
+
+\subsubsection*{Método investigativo}  
+El método empleado en esta investigación se centra en la interpretación y análisis de datos de ocupación de vías y distancias entre trenes. Estos datos se abstraen para facilitar su comprensión por sistemas computacionales y establecer relaciones entre ellos, permitiendo la formulación de un caso basado en las características específicas de cada tipo de registro, ahora definidos como clases. El objetivo principal es identificar patrones significativos y evaluar situaciones de riesgo asociadas a la operación ferroviaria.  
+
+Los datos que se tendrán en cuenta para ser analizados en el modelo provienen de fuentes pertinentes, como registros de telecomunicaciones ferroviarias y documentos oficiales de investigaciones previas. En el modelo, estos datos son procesados mediante técnicas formales, utilizando modelos en VDM++ y herramientas de model checking, que están ligadas a estados dentro de las operaciones de cada una de las clases (registros), lo que permite evaluar la coherencia temporal y la validez de los eventos registrados.  
+
+Finalmente, se concluye que este método de enfoque cualitativo sobresale por su capacidad de abordar información incompleta y garantizar precisión en la reconstrucción de eventos, contribuyendo significativamente al desarrollo de procedimientos de seguridad más eficientes y adaptables, lo que representa una adecuada base para proceder con esta investigación.  
+
+\subsection*{Procedimiento de Investigación}  
+En el repositorio de GitHub se tiene el código completo de la investigación, que está basado en el modelado formal de datos relacionados con la seguridad ferroviaria utilizando el lenguaje VDM++.\cite{DACS-SLL_Methods}\\
+A continuación, se presenta una imagen básica del modelado de clases que muestra las principales clases involucradas en la estructura del modelo. Esta imagen ilustra cómo se organizan las clases de datos en el modelo propuesto.  
 
 \bibliographystyle{IEEEtran}
 \sloppy
