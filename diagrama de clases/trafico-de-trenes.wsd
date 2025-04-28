@@ -1,73 +1,58 @@
 @startuml trafico de trenes
 
 class Tren {
-    -id: nat
+    -id: nat1
+    -tipo: seq of char <<carga|transporte>>
     -distanciaSeguridad: real
-    -Tipo: seq of char <<carga|transporte>>
-    +Tren(id: nat, Tipo: seq of char, distanciaSeguridad: real)
+    +Tren(id: nat1, tipo: seq of char, distanciaSeguridad: real)
     +desacelerar(): ()
     +acelerar(): ()
     +frenar(): ()
 }
 
-class TramoVia {
-    -ocupado: bool
-    -id: nat
-    -longitud: real
-    +TramoVia(id: nat, ocupado: bool, longitud: real)
-    +SetOcupado(ocupado: bool): ()
-    +notificarSistema(): ()
-}
-
 class Sensor {
-    #id: nat
-    #latitud: real 
-    #longitud: real 
+    #id: nat1
     #activo: bool
-    +Sensor(id: nat, latitud: real, longitud: real, activo: bool)
+    +Sensor(id: nat1, activo: bool)
     +SetActivo(activo: bool): ()
     +enviarAlerta(alerta: Alerta): ()
 }
 
-class SensorTren {
-    +SensorTren(id: nat, tipo: seq of char, activo: bool)
-    +ActualizarUbicacion(latitud: real, longitud:real): ()
+class SensorEntreTrenes{
+    -distanciaConTrenDelantero: real
+    -existeTren : bool
+    +SensorEntreTrenes(id: nat1, activo: bool, distanciaConTrenDelantero: real, existeTren : bool)
+    +SetdistanciaConTrenDelantero(distancia: real): ()
+    +SetexisteTren(existeTren : bool): ()
 }
 
-class SensorVia {
-    -ocupado: bool
-    +SensorVia(ocupado: bool, id: nat, tipo: seq of char, activo: bool)
-    +SetOcupadoVia(ocupado: bool): ()
-    +SetOcupadoSensor(ocupado: bool): ()
+class SensorDeProximidad {
+    -deteccion: bool
+    -queSeDetecta: seq of char
+    +SensorDeProximidad(id: nat1, activo: bool, deteccion: bool, queSeDetecta: seq of char)
+    +deteccion(deteccion: bool): ()
 }
 
 class Alerta {
-    -
-    -id: nat
-    -tipo: seq of char <<distancia_corta|via_ocupada>>
+    -id: nat1
+    -tipo: seq of char <<distancia corta|via con obstruccion>>
     -mensaje: seq of char
     -fechaHora: seq of char
-    +Alerta(id: nat, tipo: seq of char, mensaje: seq of char, fechaHora: seq of char)
+    +Alerta(id: nat1, tipo: seq of char, mensaje: seq of char, fechaHora: seq of char)
 }
 
 class SistemaControl {
-    -Nombre: seq of char
-    +SistemaControl(Nombre: seq of char)
+    -nombre: seq of char
+    +SistemaControl(nombre: seq of char)
     +emitirOrdenes(mensaje: seq of char): ()
-    +CalibrarVelocidad(TrenActual: Tren, TrenAdelante: Tren): ()
-    +CalibrarVelocidadTramo(TrenActual: Tren, Via: TramoVia): ()
+    +CalibrarVelocidad(TrenAtras: Tren): ()
     +RecibirAlertas(): ()
 }
 
-Sensor <|-- SensorTren
-Sensor <|-- SensorVia
+Sensor <|-- SensorEntreTrenes
+Sensor <|-- SensorDeProximidad
 
-SistemaControl "1" o-- "1..*" Tren : gestiona 
-SistemaControl "1" o-- "1..*" TramoVia : monitorea 
-
-TramoVia "1" -- "1..*" SensorVia : equipa 
-Tren "1" -- "1..*" SensorTren : equipa
-
+SistemaControl "1" o-- "1..*" Tren : gestiona
 Sensor "1" -- "0..*" Alerta : genera
-
+Sensor "2" -- "1" Tren
 @enduml
