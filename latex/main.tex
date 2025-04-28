@@ -62,60 +62,59 @@ El avance de máquinas que encuentran y avisan sobre problemas del tren es una p
 
 
 \subsection{Alcance esperado}
-El alcance de este proyecto se centra en la aplicación de métodos formales para estructurar y analizar el sistema de prevención de colisiones ferroviarias. A través del uso de VDM++ y model-checking, se busca desarrollar un modelo formal que permita verificar la consistencia y validez de las interacciones entre los componentes del sistema, como los trenes, sensores y semáforos. Este enfoque garantizará la integridad de las decisiones automatizadas, como los cambios de señales o ajustes de velocidad, y asegurará que el sistema funcione correctamente en todas las condiciones posibles. Mediante un análisis riguroso y sistemático, se contribuirá a mejorar la seguridad del tráfico ferroviario, proporcionando una base sólida para el desarrollo de herramientas futuras que optimicen la prevención de accidentes en el ámbito ferroviario.
-
+El alcance de este proyecto se centra en la aplicación de métodos formales para estructurar y analizar el sistema de prevención de colisiones ferroviarias. A través del uso de VDM++ y model-checking, se busca desarrollar un modelo formal que permita verificar la consistencia y validez de las interacciones entre los componentes del sistema, como los trenes y sensores. Este enfoque garantizará la integridad de las decisiones automatizadas, como los cambios de señales o ajustes de velocidad, y asegurará que el sistema funcione correctamente en todas las condiciones posibles. Mediante un análisis riguroso y sistemático, se contribuirá a mejorar la seguridad del tráfico ferroviario, proporcionando una base sólida para el desarrollo de herramientas futuras que optimicen la prevención de accidentes en el ámbito ferroviario.
 
 \section{Resumen Ejecutivo}
+
 \subsection{Antecedentes}
 \subsubsection{Un Sistema de Seguridad y Prevención de Colisiones en Tiempo Real para Trenes}
-\subsubsection*{Resumen}
+\subsubsection*{Resumen}  
 El artículo presenta un sistema integral de seguridad que combina diversas tecnologías avanzadas para la prevención de colisiones en el transporte ferroviario. Reconoce que, a pesar de las mejoras en la infraestructura y las técnicas de gestión, los peligros persisten, lo que justifica la implementación de un enfoque más proactivo. El sistema propuesto utiliza datos en tiempo real para detectar y responder a situaciones de riesgo, con el fin de prevenir accidentes antes de que ocurran. Además, se subraya la importancia de la comunicación entre trenes, estaciones y otros elementos del sistema para asegurar una operación sincronizada y segura.
-\subsubsection*{Puntos de interés para la investigación}
+\subsubsection*{Puntos de interés para la investigación}  
 \begin{itemize}
-    \item \textbf{Detección y Respuesta en Tiempo Real:}
-    El sistema se basa en tecnologías de detección que permiten identificar situaciones peligrosas en tiempo real, activando respuestas automáticas que pueden incluir la reducción de velocidad o la detención completa antes de que se produzca una colisión\cite{railwaycouncil2017realsafetysystem}.
-    \item \textbf{Integración de Tecnologías Avanzadas:}
-    Se integran tecnologías como el monitoreo por GPS, sensores de proximidad y sistemas de comunicación entre trenes (CBTC), lo que aumenta la conciencia situacional y la capacidad de respuesta ante emergencias\cite{railwaycouncil2017realsafetysystem}.
-    \item \textbf{Comunicaciones Eficientes:}
-    La comunicación efectiva entre los trenes y las estaciones es fundamental para coordinar acciones y minimizar riesgos. El artículo destaca la necesidad de protocolos de comunicación robustos para asegurar que la información crítica se transmita sin demora\cite{railwaycouncil2017realsafetysystem}.
-    \item \textbf{Beneficios Socioeconómicos:}
-    Al reducir la frecuencia y severidad de los accidentes, el sistema no solo mejora la seguridad de los pasajeros y el personal, sino que también se traduce en beneficios económicos para las comunidades que dependen del transporte ferroviario, mitigando pérdidas asociadas a accidentes y paradas operativas\cite{railwaycouncil2017realsafetysystem}.
-    \item \textbf{Evaluación Continua y Mejora del Sistema:}
-    El sistema propuesto incluye mecanismos para la evaluación continua y la mejora de los procedimientos de seguridad, asegurando que se mantenga actualizado frente a nuevas amenazas y desarrollos tecnológicos en el ámbito ferroviario\cite{railwaycouncil2017realsafetysystem}.
+    \item \textbf{Detección y Respuesta en Tiempo Real:}  
+    Según Wu (2017), el sistema se basa en tecnologías de detección que permiten identificar situaciones peligrosas en tiempo real, activando respuestas automáticas como la reducción de velocidad o la detención total antes de que se produzca una colisión \cite{railwaycouncil2017realsafetysystem}.    
+    \item \textbf{Integración de Tecnologías Avanzadas:}  
+    Wu (2017) destaca que se integran tecnologías como el monitoreo por GPS, sensores de proximidad y sistemas de comunicación entre trenes, lo que mejora la conciencia situacional y la capacidad de respuesta ante emergencias \cite{railwaycouncil2017realsafetysystem}.    
+    \item \textbf{Comunicaciones Eficientes:}  
+    Según Wu (2017), la comunicación efectiva entre los trenes y las estaciones es clave para coordinar acciones y minimizar riesgos. El autor resalta la necesidad de protocolos de comunicación robustos para asegurar que la información crítica se transmita sin demora \cite{railwaycouncil2017realsafetysystem}.   
+    \item \textbf{Beneficios Socioeconómicos:}  
+    Wu (2017) señala que, al reducir la frecuencia y severidad de los accidentes, el sistema no solo mejora la seguridad de los pasajeros y el personal, sino que también tiene beneficios económicos para las comunidades dependientes del transporte ferroviario, al mitigar pérdidas asociadas a accidentes y paradas operativas \cite{railwaycouncil2017realsafetysystem}.    
+    \item \textbf{Evaluación Continua y Mejora del Sistema:}  
+    Según Wu (2017), el sistema incluye mecanismos para la evaluación continua y la mejora de los procedimientos de seguridad, asegurando que se mantenga actualizado frente a nuevas amenazas y desarrollos tecnológicos en el ámbito ferroviario \cite{railwaycouncil2017realsafetysystem}.
 \end{itemize}
 
 \subsubsection{SafeCap: Un Sistema de Seguridad para la Prevención de Colisiones en Tráfico Ferroviario}
-\subsubsection*{Resumen}
+\subsubsection*{Resumen}  
 El documento presenta el sistema SafeCap, diseñado específicamente para abordar la seguridad en las operaciones ferroviarias y evitar colisiones entre trenes. A pesar de las mejoras en la infraestructura ferroviaria y las tecnologías actuales, los accidentes siguen siendo una preocupación significativa. SafeCap utiliza sensores y tecnología de comunicación para proporcionar un monitoreo continuo del estado de los trenes y su entorno. El sistema puede detectar situaciones potencialmente peligrosas y activar alertas o intervenciones automáticas para prevenir colisiones.
-\subsubsection*{Puntos de interés para la investigación}
+\subsubsection*{Puntos de interés para la investigación}  
 \begin{itemize}
-    \item \textbf{Detección Proactiva de Riesgos:}
-    SafeCap implementa tecnologías de detección avanzada que permiten identificar riesgos en tiempo real, lo que facilita una respuesta rápida ante situaciones peligrosas y atiende a la seguridad de los viajeros y el personal\cite{ada2014safecap}.
-    \item \textbf{Integración de Sensores y Sistemas de Comunicación:}
-    El sistema hace uso de diversos sensores que recopilan datos críticos y los comunica a través de redes seguras, asegurando que toda la información relevante esté disponible para el análisis inmediato, lo que mejora la toma de decisiones en situaciones de emergencia\cite{ada2014safecap}.
-    \item \textbf{Intervenciones Automáticas:}
-    Una característica clave de SafeCap es la capacidad de llevar a cabo intervenciones automáticas, como frenar o desviar trenes, a fin de evitar accidentes, lo que reduce la dependencia de la intervención humana y el margen de error asociado\cite{ada2014safecap}.
-    \item \textbf{Mejora Continua del Sistema:}
-    Se incorpora un enfoque de mejora continua donde el sistema aprende de incidentes previos y se ajusta para optimizar su rendimiento, asegurando que se mantenga actualizado frente a nuevas amenazas y se mejore la efectividad de la prevención de colisiones\cite{ada2014safecap}.
-    \item \textbf{Impacto Social y Económico:}
-    La implementación de SafeCap no solo incrementa la seguridad en el transporte ferroviario, sino que también tiene un impacto positivo en las comunidades, al reducir los costos económicos relacionados con accidentes y mejorar la confianza del público en el sistema ferroviario\cite{ada2014safecap}.
+    \item \textbf{Detección Proactiva de Riesgos:}  
+    Hann y Couch (2014) afirman que SafeCap implementa tecnologías de detección avanzada que permiten identificar riesgos en tiempo real, lo que facilita una respuesta rápida ante situaciones peligrosas y garantiza la seguridad de los viajeros y el personal \cite{ada2014safecap}.   
+    \item \textbf{Integración de Sensores y Sistemas de Comunicación:}  
+    Los autores destacan que el sistema hace uso de diversos sensores que recopilan datos críticos y los transmiten a través de redes seguras, asegurando que la información relevante esté disponible de manera inmediata, lo que mejora la toma de decisiones en situaciones de emergencia \cite{ada2014safecap}.    
+    \item \textbf{Intervenciones Automáticas:}  
+    Hann y Couch (2014) subrayan que una característica clave de SafeCap es la capacidad de llevar a cabo intervenciones automáticas, como frenar o desviar trenes, a fin de evitar accidentes. Esto reduce la dependencia de la intervención humana y el margen de error asociado \cite{ada2014safecap}.   
+    \item \textbf{Mejora Continua del Sistema:}  
+    Según los autores, SafeCap incluye un enfoque de mejora continua que permite al sistema aprender de incidentes previos y ajustarse para optimizar su rendimiento, asegurando que se mantenga actualizado frente a nuevas amenazas \cite{ada2014safecap}.  
+    \item \textbf{Impacto Social y Económico:}  
+    Hann y Couch (2014) mencionan que la implementación de SafeCap no solo incrementa la seguridad en el transporte ferroviario, sino que también tiene un impacto positivo en las comunidades, al reducir los costos económicos relacionados con accidentes y mejorar la confianza del público en el sistema ferroviario \cite{ada2014safecap}.
 \end{itemize}
-
 \subsubsection{Intel: Sistemas de Prevención de Colisiones en Trenes}
-\subsubsection*{Resumen}
+\subsubsection*{Resumen}  
 El informe detalla la importancia de los sistemas de prevención de colisiones en el contexto del transporte ferroviario. A pesar de que el medio ferroviario es considerado uno de los más seguros, los accidentes continúan representando una amenaza significativa. Los sistemas de prevención de colisiones utilizan tecnología de monitoreo y comunicación para identificar y mitigar riesgos en tiempo real, permitiendo la intervención automática ante situaciones de peligro. Esto no solo ayuda a evitar accidentes, sino que también optimiza las operaciones del servicio ferroviario.
-\subsubsection*{Puntos de interés para la investigación}
+\subsubsection*{Puntos de interés para la investigación}  
 \begin{itemize}
-    \item \textbf{Monitoreo en Tiempo Real:}
-    Los sistemas de prevención de colisiones se basan en tecnologías de monitoreo en tiempo real, que permiten la evaluación constante de las condiciones operativas y la detección de situaciones de riesgo, garantizando respuestas rápidas\cite{intel2022collision}.
-    \item \textbf{Interconexión de Sistemas:}
-    Se destaca la importancia de la interconexión entre diferentes componentes del sistema ferroviario, como señales, trenes y centros de control, para una comunicación efectiva. Esta integración es esencial para la coordinación de acciones preventivas\cite{intel2022collision}.
-    \item \textbf{Intervenciones Automáticas:}
-    Los sistemas son capaces de implementar intervenciones automáticas, como el frenado o cambios de ruta, cuando se detectan condiciones peligrosas, reduciendo la dependencia del operador humano y minimizando el margen de error\cite{intel2022collision}.
-    \item \textbf{Compatibilidad con Nuevas Tecnologías:}
-    El informe resalta cómo los sistemas de prevención de colisiones se pueden integrar con tecnologías emergentes, como inteligencia artificial y análisis de datos, para mejorar aún más su eficacia y adaptabilidad frente a futuros desafíos\cite{intel2022collision}.
-    \item \textbf{Beneficios Económicos y Sociales:}
-    La reducción de accidentes no solo tiene un impacto positivo en la seguridad de los usuarios, sino que también contribuye a la eficiencia económica del transporte ferroviario, disminuyendo costos asociados a paradas no planificadas y daños. Un sistema ferroviario más seguro fomenta la confianza pública en los viajes en tren, beneficiando a las comunidades y economías locales\cite{intel2022collision}.
+    \item \textbf{Monitoreo en Tiempo Real:}  
+    Intel (2022) explica que los sistemas de prevención de colisiones se basan en tecnologías de monitoreo en tiempo real, lo que permite la evaluación constante de las condiciones operativas y la detección de situaciones de riesgo, asegurando respuestas rápidas ante emergencias \cite{intel2022collision}.   
+    \item \textbf{Interconexión de Sistemas:}  
+    El autor enfatiza la importancia de la interconexión entre diferentes componentes del sistema ferroviario, como señales, trenes y centros de control, para una comunicación efectiva. Esta integración es esencial para coordinar acciones preventivas y garantizar una respuesta ágil ante cualquier riesgo \cite{intel2022collision}.    
+    \item \textbf{Intervenciones Automáticas:}  
+    Según Intel (2022), los sistemas son capaces de implementar intervenciones automáticas, como el frenado o cambios de ruta, cuando se detectan condiciones peligrosas. Esto reduce la dependencia del operador humano y minimiza el margen de error \cite{intel2022collision}.  
+    \item \textbf{Compatibilidad con Nuevas Tecnologías:}  
+    Intel (2022) también destaca cómo los sistemas de prevención de colisiones pueden integrarse con tecnologías emergentes, como inteligencia artificial y análisis de datos, para mejorar su eficacia y adaptabilidad ante nuevos desafíos \cite{intel2022collision}.
+    \item \textbf{Beneficios Económicos y Sociales:}  
+    El autor señala que la reducción de accidentes no solo tiene un impacto positivo en la seguridad de los usuarios, sino que también contribuye a la eficiencia económica del transporte ferroviario, disminuyendo costos asociados a paradas no planificadas y daños. Esto fomenta la confianza pública en los viajes en tren, beneficiando a las comunidades y economías locales \cite{intel2022collision}.
 \end{itemize}
 
 \section{Requerimientos funcionales}
