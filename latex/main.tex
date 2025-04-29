@@ -206,7 +206,7 @@ El diseño cualitativo y el enfoque formal elegido se justifica por su capacidad
 \subsubsection*{Método investigativo}  
 El método empleado en esta investigación se centra en la interpretación y análisis de datos de ocupación de vías y distancias entre trenes. Estos datos se abstraen para facilitar su comprensión por sistemas computacionales y establecer relaciones entre ellos, permitiendo la formulación de un caso basado en las características específicas de cada tipo de registro, ahora definidos como clases. El objetivo principal es identificar patrones significativos y evaluar situaciones de riesgo asociadas a la operación ferroviaria.  
 
-Los datos que se tendrán en cuenta para ser analizados en el modelo provienen de fuentes pertinentes, como registros de telecomunicaciones ferroviarias y documentos oficiales de investigaciones previas. En el modelo, estos datos son procesados mediante técnicas formales, utilizando modelos en VDM++ y herramientas de model checking, que están ligadas a estados dentro de las operaciones de cada una de las clases (registros), lo que permite evaluar la coherencia temporal y la validez de los eventos registrados.  
+Los datos que se tendrán en cuenta para ser analizados en el modelo provienen de fuentes pertinentes, como registros ferroviarios y documentos oficiales de investigaciones previas. En el modelo, estos datos son procesados mediante técnicas formales, utilizando modelos en VDM++ y herramientas de model checking, que están ligadas a estados dentro de las operaciones de cada una de las clases (registros), lo que permite evaluar la coherencia temporal y la validez de los eventos registrados.  
 
 Finalmente, se concluye que este método de enfoque cualitativo sobresale por su capacidad de abordar información incompleta y garantizar precisión en la reconstrucción de eventos, contribuyendo significativamente al desarrollo de procedimientos de seguridad más eficientes y adaptables, lo que representa una adecuada base para proceder con esta investigación.  
 
@@ -214,12 +214,14 @@ Finalmente, se concluye que este método de enfoque cualitativo sobresale por su
 En el repositorio de GitHub se tiene el código completo de la investigación, que está basado en el modelado formal de datos relacionados con la seguridad ferroviaria utilizando el lenguaje VDM++.\cite{rodrigostranger2023trafico_de_trenes}\\
 A continuación, se presenta una imagen básica del modelado de clases que muestra las principales clases involucradas en la estructura del modelo. Esta imagen ilustra cómo se organizan las clases de datos en el modelo propuesto.  
 
-\begin{figure}[htbp]
+\begin{figure}[!t]
     \centering
-    \includegraphics[width=0.4\textwidth]{img/diagrama-clases.jpg}
+    \includegraphics[width=0.48\textwidth]{img/diagrama-clases.jpg}
     \caption{Modelo de datos generado por VDM}
     \label{fig:VDM_model}
-\end{figure} 
+\end{figure}
+
+\vspace{3\baselineskip}
 
 \bibliographystyle{IEEEtran}
 \sloppy
