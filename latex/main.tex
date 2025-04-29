@@ -194,6 +194,19 @@ La detección de objetos es fundamental para evitar accidentes en las vías. Los
 
 Con estos avances en tecnología de sensores, los sistemas ferroviarios pueden operar de manera más segura y eficiente, contribuyendo al bienestar de millones de usuarios en todo el mundo.  
 
+\section{Distancia de Frenado}
+
+La distancia de frenado es un parámetro esencial en la operación ferroviaria, ya que define el espacio necesario para que un tren pueda detenerse de forma segura desde una determinada velocidad. Según la metodología descrita por la Agencia Estatal de Seguridad Ferroviaria, el cálculo de esta distancia se basa en una deceleración constante durante el proceso de frenado y toma en cuenta varios factores, incluyendo la velocidad inicial del tren, la velocidad final deseada, la declividad de la vía, la respuesta del sistema de frenos y la inercia rotacional de las masas \cite{aesf2023}.
+
+La fórmula general utilizada para determinar la distancia de frenado es la siguiente:
+
+\begin{equation}
+s_{grad} = v_0 \cdot t_e - \frac{1}{2} \cdot \frac{m_{st}}{m_{dyn}} \cdot g_n \cdot i \cdot t_e^2 + \left( v_0 - \frac{m_{st}}{m_{dyn}} \cdot g_n \cdot i \cdot t_e \right) \cdot t_e
+\end{equation}
+
+donde $v_0$ es la velocidad inicial, $t_e$ el tiempo de respuesta equivalente del freno, $a_e$ la deceleración efectiva, $i$ la pendiente longitudinal de la vía, y $\frac{m_{st}}{m_{dyn}}$ el inverso del coeficiente de inercia de las masas rotativas.
+
+Este modelo, conocido como modelo ETCS, permite representar de forma precisa el comportamiento del tren durante el frenado y está alineado con los estándares europeos actuales \cite{aesf2023}. Su aplicación permite calcular de manera estandarizada las distancias de frenado necesarias para distintas velocidades y condiciones operativas.
 
 \section{Metodología}  
 
