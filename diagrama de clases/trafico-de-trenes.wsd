@@ -29,8 +29,8 @@ class SensorEntreTrenes{
 
 class SensorDeProximidad {
     -detection: bool
-    -queSeDetecta: seq of char
-    +SensorDeProximidad(id: nat1, activo: bool, detection: bool, queSeDetecta: seq of char)
+    -thatIsDetected: seq of char
+    +SensorDeProximidad(id: nat1, activo: bool, detection: bool, thatIsDetected: seq of char)
     +deteccion(deteccion: bool): ()
 }
 
