@@ -1,10 +1,11 @@
 @startuml trafico de trenes
 
 class Tren {
-    -id: nat1
-    -tipo: seq of char <<carga|transporte>>
-    -distanciaSeguridad: real
-    +Tren(id: nat1, tipo: seq of char, distanciaSeguridad: real)
+    -idTrain: nat1
+    -typeTrain: seq of char <<carga|transporte>>
+    -lengthTrain: real
+    -distanceSafetyTrain: real
+    +Tren(idTrain: nat1, typeTrain: seq of char, lengthTrain: real, distanceSafetyTrain: real)
     +desacelerar(): ()
     +acelerar(): ()
     +frenar(): ()
@@ -34,12 +35,12 @@ class SensorDeProximidad {
 }
 
 class Alerta {
-    -id: nat1
-    -tipo: seq of char <<distancia corta|via con obstruccion>>
-    -mensaje: seq of char
-    -fecha: nat1 * nat1 * nat1
-    -hora: nat * nat * nat
-    +Alerta(id: nat1, tipo: seq of char, mensaje: seq of char, fechaHora: seq of char)
+    -idAlert: nat1
+    -typeAlert: seq of char <<distancia corta|via con obstruccion>>
+    -messageAlert: seq of char
+    -dateAlert: nat1 * nat1 * nat1
+    -hourAlert: nat * nat * nat
+    +Alerta(typeAlert: nat1, messageAlert: seq of char, messageAlert: seq of char, dateAlert: nat1 * nat1 * nat1, hourAlert: nat * nat * nat)
 }
 
 class SistemaControl {
