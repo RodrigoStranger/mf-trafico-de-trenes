@@ -1,0 +1,15 @@
+class SensorDeProximidad is subclass of Sensor
+instance variables
+    private detection: bool;
+    private thatIsDetected: seq of char;
+    
+operations
+    public SensorDeProximidad: nat1 * bool * bool * seq of char ==> SensorDeProximidad
+    SensorDeProximidad(identificadorSensor, activoSensor, deteccion, queSeDetecta) ==
+    (
+        idSensor := identificadorSensor;
+        assetSensor := activoSensor;
+        detection := deteccion;
+        thatIsDetected := queSeDetecta
+    );
+end SensorDeProximidad

@@ -1,0 +1,15 @@
+class SensorEntreTrenes is subclass of Sensor
+instance variables
+    private distanceWithFrontTrain: real;
+    private existsTrain: bool;
+    
+operations
+    public SensorEntreTrenes: nat1 * bool * real * bool ==> SensorEntreTrenes
+    SensorEntreTrenes(identificadorSensor, activoSensor, distanciaConTrenDelantero, existeTren) ==
+    (
+        idSensor := identificadorSensor;
+        assetSensor := activoSensor;
+        distanceWithFrontTrain := distanciaConTrenDelantero;
+        existsTrain := existeTren
+    );
+end SensorEntreTrenes
