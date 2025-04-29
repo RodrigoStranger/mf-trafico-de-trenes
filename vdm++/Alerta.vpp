@@ -7,11 +7,11 @@ class Alerta
     private hourAlert: nat * nat * nat;
 
     operations
-    public Alerta: idAlert * typeAlert * messageAlert * dateAlert * hourAlert ==> Alerta
+    public Alerta: nat1 * seq of char * seq of char * (nat1 * nat1 * nat1) * (nat * nat * nat) ==> Alerta
     Alerta(identificadorAlerta, tipoAlerta, mensageAlerta, diaAlerta, horaAlerta) ==
      (idAlert := identificadorAlerta;
       typeAlert := tipoAlerta;
       messageAlert := mensageAlerta;
       dateAlert := diaAlerta;
-      hourAlert ::= horaAlerta);
+      hourAlert := horaAlerta);
 end Alerta
