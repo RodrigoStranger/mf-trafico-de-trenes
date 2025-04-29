@@ -1,3 +1,11 @@
 class Sensor
     instance variables
+    protected idSensor: nat1;
+    protected assetSensor: bool;
     
+    operations
+    public Sensor: nat1 * bool ==> Sensor
+    Sensor(identificadorSensor, activoSensor) ==                            
+     (idSensor := identificadorSensor;
+      assetSensor := activoSensor);
+end Sensor
