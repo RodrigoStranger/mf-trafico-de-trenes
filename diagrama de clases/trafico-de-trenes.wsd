@@ -12,25 +12,25 @@ class Tren {
 }
 
 class Sensor {
-    #id: nat1
-    #activo: bool
-    +Sensor(id: nat1, activo: bool)
-    +SetActivo(activo: bool): ()
+    #idSensor: nat1
+    #assetSensor: bool
+    +Sensor(idSensor: nat1, assetSensor: bool)
+    +SetActivo(asset: bool): ()
     +enviarAlerta(alerta: Alerta): ()
 }
 
 class SensorEntreTrenes{
-    -distanciaConTrenDelantero: real
-    -existeTren : bool
-    +SensorEntreTrenes(id: nat1, activo: bool, distanciaConTrenDelantero: real, existeTren : bool)
-    +SetdistanciaConTrenDelantero(distancia: real): ()
+    -distanceWithFrontTrain: real
+    -thatIsDetected : bool
+    +SensorEntreTrenes(id: nat1, activo: bool, distanceWithFrontTrain: real, thatIsDetected : bool)
+    +SetdistanciaConTrenDelantero(distance: real): ()
     +SetexisteTren(existeTren : bool): ()
 }
 
 class SensorDeProximidad {
-    -deteccion: bool
+    -detection: bool
     -queSeDetecta: seq of char
-    +SensorDeProximidad(id: nat1, activo: bool, deteccion: bool, queSeDetecta: seq of char)
+    +SensorDeProximidad(id: nat1, activo: bool, detection: bool, queSeDetecta: seq of char)
     +deteccion(deteccion: bool): ()
 }
 
@@ -44,8 +44,8 @@ class Alerta {
 }
 
 class SistemaControl {
-    -nombre: seq of char
-    +SistemaControl(nombre: seq of char)
+    -name: seq of char
+    +SistemaControl(name: seq of char)
     +emitirOrdenes(mensaje: seq of char): ()
     +CalibrarVelocidad(TrenAtras: Tren): ()
     +RecibirAlertas(): ()
