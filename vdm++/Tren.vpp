@@ -11,7 +11,7 @@ class Tren
   inv distanceSafetyTrain > lengthTrain + (lengthTrain / 2);
 
   operations
-    public Tren: nat1 * seq of char * real ==> Tren
+    public Tren: nat1 * seq of char * real, real ==> Tren
     Tren(identificadorTren, tipoTren, longitudTren, distanciaSeguridadTren) ==                            
      (idTrain := identificadorTren;
       typeTrain := tipoTren;
