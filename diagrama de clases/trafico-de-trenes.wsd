@@ -37,7 +37,8 @@ class Alerta {
     -id: nat1
     -tipo: seq of char <<distancia corta|via con obstruccion>>
     -mensaje: seq of char
-    -fechaHora: seq of char
+    -fecha: nat1 * nat1 * nat1
+    -hora: nat * nat * nat
     +Alerta(id: nat1, tipo: seq of char, mensaje: seq of char, fechaHora: seq of char)
 }
 
