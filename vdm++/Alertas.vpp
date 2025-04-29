@@ -1,0 +1,16 @@
+class Alerta
+    instance variables
+    private idAlert: nat1;
+    private typeAlert: seq of char;
+    private messageAlert: seq of char;
+    private dateAlert: nat1 * nat1 * nat1;
+    private hourAlert: nat * nat * nat;
+
+    operations
+    public Alerta(identificadorAlerta, tipoAlerta, mensageAlerta, diaAlerta, horaAlerta) ==
+     (idAlert := identificadorAlerta;
+      typeAlert := tipoAlerta;
+      messageAlert := mensageAlerta;
+      dateAlert := diaAlerta;
+      hourAlert ::= horaAlerta);
+end Alerta
