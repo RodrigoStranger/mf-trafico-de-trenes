@@ -131,7 +131,7 @@ El informe detalla la importancia de los sistemas de prevención de colisiones e
 \section{Requerimientos funcionales}
 
 \subsubsection{Detección de ocupación de vías}  
-El sistema debe ser capaz de detectar con precisión si una vía está ocupada por un tren u objeto.
+El sistema debe ser capaz de detectar con precisión si una vía está ocupada por un tren u objeto, y activar automáticamente los semáforos correspondientes para evitar que otro tren entre en una vía ocupada.
 
 \subsubsection{Cálculo de distancia entre trenes}  
 El sistema debe medir la distancia entre trenes en circulación para garantizar que se mantenga una distancia de seguridad adecuada. Si la distancia se reduce a niveles peligrosos, el sistema debe alertar o activar mecanismos de frenado.
@@ -143,7 +143,10 @@ El sistema debe ser capaz de enviar alertas de ajuste de velocidad a los operado
 El sistema debe calcular la distancia mínima entre dos trenes en función de la distancia de frenado de cada uno y la superposición de sus trayectorias. Este cálculo debe tener en cuenta las capacidades de frenado, la velocidad de los trenes y las condiciones de operación para garantizar la seguridad.
 
 \subsubsection{Verificación en tiempo real}  
-El sistema debe ser capaz de verificar en tiempo real las decisiones tomadas por los sensores, asegurándose de que las acciones se basen en datos correctos y precisos.
+El sistema debe ser capaz de verificar en tiempo real las decisiones tomadas por los sensores y los semáforos, asegurándose de que las acciones se basen en datos correctos y precisos. Debe proporcionar informes de error si se detectan inconsistencias o fallos.
+
+\section{Objetivo general de la investigación}  
+Diseñar un modelo formal con VDM++ para estructurar y analizar la información relacionada con los trenes y sus sistemas de control, mejorando la seguridad ferroviaria.
 
 \section{Objetivo general de la investigación}  
 Diseñar un modelo formal con VDM++ para estructurar y analizar la información relacionada con los trenes y sus sistemas de control, mejorando la seguridad ferroviaria.
