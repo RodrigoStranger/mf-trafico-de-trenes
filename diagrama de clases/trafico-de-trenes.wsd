@@ -21,8 +21,8 @@ class Sensor {
 
 class SensorEntreTrenes{
     -distanceWithFrontTrain: real
-    -thatIsDetected : bool
-    +SensorEntreTrenes(id: nat1, activo: bool, distanceWithFrontTrain: real, thatIsDetected : bool)
+    -existsTrain : bool
+    +SensorEntreTrenes(id: nat1, activo: bool, distanceWithFrontTrain: real, existsTrain : bool)
     +SetdistanciaConTrenDelantero(distance: real): ()
     +SetexisteTren(existeTren : bool): ()
 }
