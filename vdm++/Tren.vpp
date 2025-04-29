@@ -1,0 +1,14 @@
+class Tren
+  instance variables
+    private id: nat1;                
+    private typeTrain: seq of char;    
+    private distanceSafety: real;
+
+  operations
+    public Tren: nat1 * seq of char * real ==> Tren
+    Tren(identificador, tipoTren, distanciaSeguridad) ==                            
+     (id := identificador;
+      typeTrain := tipoTren;
+      distanceSafety := distanciaSeguridad);
+
+end Tren
