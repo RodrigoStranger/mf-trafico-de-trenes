@@ -15,18 +15,33 @@
 \usepackage[spanish]{babel}
 
 % Configuración de listings para bash
-\lstset{
-  language=bash,
-  basicstyle=\ttfamily, 
-  columns=fullflexible, 
-  frame=single, 
-  breaklines=true, 
-  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}, 
-  backgroundcolor=\color{lightgray!20},  
-  keywordstyle=\color{blue}, 
-  commentstyle=\color{green}, 
-  stringstyle=\color{red} 
+\lstdefinelanguage{VMDPP}{
+  morekeywords={class, instance, variables, private, operations, public, end, inv, is, subclass, of, bool, nat, nat1, char, real, seq, protected},
+  sensitive=true,
+  morecomment=[l]{//},
+  morestring=[b]"
 }
+
+\lstset{
+  language=VMDPP,
+  basicstyle=\ttfamily\scriptsize,
+  keywordstyle=\color{black}\bfseries,
+  commentstyle=\color{gray},
+  stringstyle=\color{blue!60!black},
+  backgroundcolor=\color{white},
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  stepnumber=1,
+  numbersep=6pt,                  % <--- ajusta este valor
+  xleftmargin=2em,                % <--- ¡esto mueve todo el bloque hacia la derecha!
+  frame=single,
+  rulecolor=\color{black!30},
+  breaklines=true,
+  breakatwhitespace=true,
+  showstringspaces=false,
+  captionpos=b
+}
+
 
 \title{Especificación Formal y Validación para la Prevención de Colisiones en Tráfico Ferroviario}
 \author[1]{Infanzón Acosta R. E.}
@@ -115,24 +130,23 @@ El informe detalla la importancia de los sistemas de prevención de colisiones e
 
 \section{Requerimientos funcionales}
 
-\subsubsection{Detección de ocupación de vías} 
-El sistema debe ser capaz de detectar de manera precisa si una vía está ocupada por un tren u objeto, y debe activar automáticamente los semáforos correspondientes para evitar que un tren entre en una vía ocupada.
+\subsubsection{Detección de ocupación de vías}  
+El sistema debe ser capaz de detectar con precisión si una vía está ocupada por un tren u objeto, y activar automáticamente los semáforos correspondientes para evitar que otro tren entre en una vía ocupada.
 
-\subsubsection{Cálculo de distancia entre trenes} 
-El sistema debe medir continuamente la distancia entre trenes en circulación para garantizar que se mantenga una distancia de seguridad adecuada, y debe alertar o activar mecanismos de frenado si la distancia se reduce a niveles peligrosos.
+\subsubsection{Cálculo de distancia entre trenes}  
+El sistema debe medir la distancia entre trenes en circulación para garantizar que se mantenga una distancia de seguridad adecuada. Si la distancia se reduce a niveles peligrosos, el sistema debe alertar o activar mecanismos de frenado.
 
-\subsubsection{Ajuste automático de velocidad} 
-El sistema debe ser capaz de ajustar la velocidad de los trenes en función de las condiciones de la vía, como la proximidad a otros trenes, la ocupación de las vías y otros factores relevantes, para garantizar que los trenes puedan frenar de manera segura en situaciones críticas.
+\subsubsection{Alerta de ajuste de velocidad}  
+El sistema debe ser capaz de enviar alertas de ajuste de velocidad a los operadores cuando las condiciones de la vía, como la proximidad a otros trenes, la ocupación de las vías o factores relevantes, lo requieran.
 
-\subsubsection{Control de la integridad de la vía} 
-El sistema debe supervisar continuamente el estado de la infraestructura ferroviaria, incluyendo las vías, para detectar fallos estructurales o desviaciones que puedan comprometer la seguridad, y activar medidas preventivas en caso de identificar un problema.
+\subsubsection{Cálculo de la distancia mínima entre dos trenes}  
+El sistema debe calcular la distancia mínima entre dos trenes en función de la distancia de frenado de cada uno y la superposición de sus trayectorias. Este cálculo debe tener en cuenta las capacidades de frenado, la velocidad de los trenes y las condiciones de operación para garantizar la seguridad.
 
-\subsubsection{Verificación en tiempo real} 
-El sistema debe ser capaz de verificar en tiempo real las decisiones tomadas por los sensores y los semáforos, las acciones que se basen en datos correctos y precisos, y proporcionar informes de error si se detectan inconsistencias o fallos en el proceso.
+\subsubsection{Verificación en tiempo real}  
+El sistema debe ser capaz de verificar en tiempo real las decisiones tomadas por los sensores y los semáforos, asegurándose de que las acciones se basen en datos correctos y precisos. Debe proporcionar informes de error si se detectan inconsistencias o fallos.
 
-\section{Objetivos de la investigación}  
-\subsection{Objetivo general}  
-Diseñar un modelo formal con VDM++ que estructure y analice la información relacionada con la seguridad ferroviaria, incluyendo datos de ocupación de vías, distancias entre trenes y estados de sensores, para garantizar la precisión, coherencia e integridad de los datos utilizados en la prevención de colisiones. Esto facilitará un análisis preciso y sistemático, mejorando la identificación de situaciones de riesgo y estableciendo las bases para futuras herramientas de mejora en la seguridad ferroviaria.  
+\section{Objetivo general de la investigación}  
+Diseñar un modelo formal con VDM++ para estructurar y analizar la información relacionada con los trenes y sus sistemas de control, mejorando la seguridad ferroviaria.
 
 \subsection{Objetivos Específicos}  
 
@@ -227,14 +241,176 @@ Finalmente, se concluye que este método de enfoque cualitativo sobresale por su
 En el repositorio de GitHub se tiene el código completo de la investigación, que está basado en el modelado formal de datos relacionados con la seguridad ferroviaria utilizando el lenguaje VDM++.\cite{rodrigostranger2023trafico_de_trenes}\\
 A continuación, se presenta una imagen básica del modelado de clases que muestra las principales clases involucradas en la estructura del modelo. Esta imagen ilustra cómo se organizan las clases de datos en el modelo propuesto.  
 
-\begin{figure}[!t]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.48\textwidth]{img/diagrama-clases.jpg}
     \caption{Modelo de datos generado por VDM}
     \label{fig:VDM_model}
 \end{figure}
 
-\vspace{3\baselineskip}
+
+%CLASE ALERTA
+    \subsubsection*{Clase \texttt{Alerta}}
+
+    La clase \texttt{Alerta} representa una alerta del sistema con información relevante sobre su tipo, mensaje, fecha y hora de ocurrencia. Esta clase incluye los siguientes atributos privados:
+
+    \begin{itemize}
+    \item \texttt{idAlert}: Identificador numérico único de la alerta (tipo \texttt{nat1}).
+    \item \texttt{typeAlert}: Tipo de la alerta como una secuencia de caracteres (\texttt{seq of char}).
+    \item \texttt{messageAlert}: Mensaje descriptivo de la alerta (\texttt{seq of char}).
+    \item \texttt{dateAlert}: Fecha de la alerta, representada como una tupla \texttt{(día, mes, año)} de tipo \texttt{nat1 * nat1 * nat1}.
+    \item \texttt{hourAlert}: Hora de la alerta, representada como una tupla \texttt{(hora, minuto, segundo)} de tipo \texttt{nat * nat * nat}.
+    \end{itemize}
+
+    La clase proporciona un único constructor público:
+
+    \begin{quote}
+    \texttt{Alerta: nat1 * seq of char * seq of char * (nat1 * nat1 * nat1) * (nat * nat * nat) \texttt{==>} Alerta}
+    \end{quote}
+
+    El constructor inicializa todos los campos privados a partir de los valores proporcionados como argumentos:
+    \begin{itemize}
+    \item \texttt{identificadorAlerta} $\rightarrow$ \texttt{idAlert}
+    \item \texttt{tipoAlerta} $\rightarrow$ \texttt{typeAlert}
+    \item \texttt{mensageAlerta} $\rightarrow$ \texttt{messageAlert}
+    \item \texttt{diaAlerta} $\rightarrow$ \texttt{dateAlert}
+    \item \texttt{horaAlerta} $\rightarrow$ \texttt{hourAlert}
+    \end{itemize}
+
+\lstinputlisting[language=VMDPP,caption={Alerta.vpp}, label={lst:vpp-codigo}]{../vdm++/Alerta.vpp}
+
+%CLASE SENSOR
+    \subsubsection*{Clase \texttt{Sensor}}
+
+    La clase \texttt{Sensor} representa un sensor genérico dentro del sistema, encapsulando información básica sobre su identidad y estado operativo. Esta clase incluye los siguientes atributos protegidos:
+
+    \begin{itemize}
+    \item \texttt{idSensor}: Identificador numérico único del sensor (tipo \texttt{nat1}).
+    \item \texttt{assetSensor}: Indicador booleano del estado del sensor: \texttt{true} si está activo, \texttt{false} en caso contrario.
+    \end{itemize}
+
+    La clase proporciona un constructor público:
+
+    \begin{quote}
+    \texttt{Sensor: nat1 * bool \texttt{==>} Sensor}
+    \end{quote}
+
+    El constructor inicializa los campos protegidos con los valores proporcionados como argumentos:
+
+    \begin{itemize}
+    \item \texttt{identificadorSensor} $\rightarrow$ \texttt{idSensor}
+    \item \texttt{activoSensor} $\rightarrow$ \texttt{assetSensor}
+    \end{itemize}
+
+\lstinputlisting[language=VMDPP,caption={Sensor.vpp}, label={lst:vpp-codigo}]{../vdm++/Sensor.vpp}
+
+%CLASE SensorDeProximidad
+
+    \subsubsection*{Clase \texttt{SensorDeProximidad}}
+
+    La clase \texttt{SensorDeProximidad} es una subclase de \texttt{Sensor} y extiende sus funcionalidades al incluir información sobre la detección y el objeto detectado. Esta clase introduce dos nuevas variables de instancia privadas:
+
+    \begin{itemize}
+    \item \texttt{detection}: Estado de la detección, indicando si el sensor ha detectado un objeto (tipo \texttt{bool}).
+    \item \texttt{thatIsDetected}: Descripción del objeto detectado, representada como una secuencia de caracteres (\texttt{seq of char}).
+    \end{itemize}
+
+    La clase incluye un constructor público:
+
+    \begin{quote}
+    \texttt{SensorDeProximidad: nat1 * bool * bool * seq of char \texttt{==>} SensorDeProximidad}
+    \end{quote}
+
+    El constructor recibe los siguientes parámetros:
+    \begin{itemize}
+    \item \texttt{identificadorSensor} $\rightarrow$ \texttt{idSensor}
+    \item \texttt{activoSensor} $\rightarrow$ \texttt{assetSensor}
+    \item \texttt{deteccion} $\rightarrow$ \texttt{detection}
+    \item \texttt{queSeDetecta} $\rightarrow$ \texttt{thatIsDetected}
+    \end{itemize}
+
+\lstinputlisting[language=VMDPP,caption={SensorDeProximidad.vpp}, label={lst:vpp-codigo}]{../vdm++/SensorDeProximidad.vpp}
+
+%CLASE SensorEntreTrenes
+
+    \subsubsection*{Clase \texttt{SensorEntreTrenes}}
+
+    La clase \texttt{SensorEntreTrenes} es una subclase de \texttt{Sensor} que extiende su funcionalidad al incluir información adicional sobre la distancia con el tren delantero y la existencia de otro tren en la vía. Esta clase contiene las siguientes variables de instancia privadas:
+
+    \begin{itemize}
+    \item \texttt{distanceWithFrontTrain}: Distancia con el tren delantero, medida en unidades reales (tipo \texttt{real}).
+    \item \texttt{existsTrain}: Estado que indica si existe un tren en la vía (tipo \texttt{bool}).
+    \end{itemize}
+
+    El constructor público de la clase \texttt{SensorEntreTrenes} se define como:
+
+    \begin{quote}
+    \texttt{SensorEntreTrenes: nat1 * bool * real * bool \texttt{==>} SensorEntreTrenes}
+    \end{quote}
+
+    El constructor inicializa las variables de instancia a partir de los parámetros proporcionados:
+    \begin{itemize}
+    \item \texttt{identificadorSensor} $\rightarrow$ \texttt{idSensor}
+    \item \texttt{activoSensor} $\rightarrow$ \texttt{assetSensor}
+    \item \texttt{distanciaConTrenDelantero} $\rightarrow$ \texttt{distanceWithFrontTrain}
+    \item \texttt{existeTren} $\rightarrow$ \texttt{existsTrain}
+    \end{itemize}
+
+\lstinputlisting[language=VMDPP,caption={SensorEntreTrenes.vpp}, label={lst:vpp-codigo}]{../vdm++/SensorEntreTrenes.vpp}
+
+%CLASE SistemaControl
+
+    \subsubsection*{Clase \texttt{SistemaControl}}
+
+    La clase \texttt{SistemaControl} representa el sistema de control que gestiona el funcionamiento del conjunto de sensores y alertas. Su única variable de instancia es privada:
+
+    \begin{itemize}
+    \item \texttt{name}: Nombre del sistema de control, representado como una secuencia de caracteres (\texttt{seq of char}).
+    \end{itemize}
+
+    La clase incluye un constructor público:
+
+    \begin{quote}
+    \texttt{SistemaControl: seq of char \texttt{==>} SistemaControl}
+    \end{quote}
+
+    El constructor inicializa la variable de instancia \texttt{name} con el valor proporcionado:
+
+    \begin{itemize}
+    \item \texttt{nombre} $\rightarrow$ \texttt{name}
+    \end{itemize}
+
+\lstinputlisting[language=VMDPP,caption={SistemaControl.vpp}, label={lst:vpp-codigo}]{../vdm++/SistemaControl.vpp}
+
+%CLASE Tren
+
+    \subsubsection*{Clase \texttt{Tren}}
+
+    La clase \texttt{Tren} representa un tren en el sistema. Contiene información sobre su identificador, tipo, longitud y distancia de seguridad. Las variables de instancia de la clase son privadas:
+
+    \begin{itemize}
+    \item \texttt{idTrain}: Identificador numérico único del tren (tipo \texttt{nat1}).
+    \item \texttt{typeTrain}: Tipo de tren, representado como una secuencia de caracteres (\texttt{seq of char}).
+    \item \texttt{lengthTrain}: Longitud del tren en unidades reales (tipo \texttt{real}).
+    \item \texttt{distanceSafetyTrain}: Distancia de seguridad del tren, también representada en unidades reales (tipo \texttt{real}).
+    \end{itemize}
+
+    El constructor público de la clase \texttt{Tren} es:
+
+    \begin{quote}
+    \texttt{Tren: nat1 * seq of char * real * real \texttt{==>} Tren}
+    \end{quote}
+
+    Este constructor inicializa las variables de instancia con los valores proporcionados:
+
+    \begin{itemize}
+    \item \texttt{identificadorTren} $\rightarrow$ \texttt{idTrain}
+    \item \texttt{tipoTren} $\rightarrow$ \texttt{typeTrain}
+    \item \texttt{longitudTren} $\rightarrow$ \texttt{lengthTrain}
+    \item \texttt{distanciaSeguridadTren} $\rightarrow$ \texttt{distanceSafetyTrain}
+    \end{itemize}
+
+\lstinputlisting[language=VMDPP,caption={Tren.vpp}, label={lst:vpp-codigo}]{../vdm++/Tren.vpp}
 
 \bibliographystyle{IEEEtran}
 \sloppy
