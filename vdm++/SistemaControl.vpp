@@ -1,0 +1,11 @@
+class SistemaControl
+instance variables
+    private name: seq of char;
+    
+operations
+    public SistemaControl: seq of char ==> SistemaControl
+    SistemaControl(nombre) ==
+    (
+        name := nombre
+    );
+end SistemaControl
