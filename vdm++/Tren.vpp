@@ -1,14 +1,21 @@
 class Tren
   instance variables
     private idTrain: nat1;                
-    private typeTrain: seq of char;    
+    private typeTrain: seq of char;
+    private lengthTrain: real;
     private distanceSafetyTrain: real;
+
+  inv idTrain > 0;
+  inv typeTrain = "Transporte" or typeTrain = "Carga";
+  inv lengthTrain > 0;
+  inv distanceSafetyTrain > lengthTrain + (lengthTrain / 2);
 
   operations
     public Tren: nat1 * seq of char * real ==> Tren
-    Tren(identificadorTren, tipoTren, distanciaSeguridadTren) ==                            
+    Tren(identificadorTren, tipoTren, longitudTren, distanciaSeguridadTren) ==                            
      (idTrain := identificadorTren;
       typeTrain := tipoTren;
+      lengthTrain := longitudTren;
       distanceSafetyTrain := distanciaSeguridadTren);
 
 end Tren
