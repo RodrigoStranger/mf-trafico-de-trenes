@@ -3,6 +3,7 @@ class Sensor
     protected idSensor: nat1;
     protected assetSensor: bool;
     
+    
     operations
     public Sensor: nat1 * bool ==> Sensor
     Sensor(identificadorSensor, activoSensor) ==                            

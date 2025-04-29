@@ -4,12 +4,7 @@ class Tren
     private typeTrain: seq of char;
     private lengthTrain: real;
     private distanceSafetyTrain: real;
-
-  inv idTrain > 0;
-  inv typeTrain = "Transporte" or typeTrain = "Carga";
-  inv lengthTrain > 0;
-  inv distanceSafetyTrain > lengthTrain + (lengthTrain / 2);
-
+    
   operations
     public Tren: nat1 * seq of char * real * real ==> Tren
     Tren(identificadorTren, tipoTren, longitudTren, distanciaSeguridadTren) ==                            
