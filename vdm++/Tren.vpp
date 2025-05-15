@@ -4,6 +4,7 @@ class Tren
     private typeTrain: seq of char;
     private lengthTrain: real;
     private distanceSafetyTrain: real;
+    private sensors: map nat1 to Sensor := {|->}; -- Map para almacenar exactamente 2 sensores
     
   operations
     public Tren: nat1 * seq of char * real * real ==> Tren
@@ -11,6 +12,24 @@ class Tren
      (idTrain := identificadorTren;
       typeTrain := tipoTren;
       lengthTrain := longitudTren;
-      distanceSafetyTrain := distanciaSeguridadTren);
-
+      distanceSafetyTrain := distanciaSeguridadTren;
+      sensors := {|->});
+      
+    -- Operación para asignar un sensor al tren
+    public addSensor: Sensor ==> ()
+    addSensor(sensor) ==
+    (
+        sensors := sensors ++ {sensor.getID() |-> sensor}
+    )
+    pre card dom sensors < 2 and sensor.getID() not in set dom sensors;
+    
+    -- Operación para obtener el ID del tren
+    public getID: () ==> nat1
+    getID() ==
+        return idTrain;
+        
+    -- Operación para verificar que el tren tiene exactamente 2 sensores
+    public hasCorrectNumberOfSensors: () ==> bool
+    hasCorrectNumberOfSensors() ==
+        return card dom sensors = 2;
 end Tren
