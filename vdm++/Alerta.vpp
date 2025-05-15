@@ -5,7 +5,6 @@ class Alerta
     private messageAlert: seq of char;
     private dateAlert: nat1 * nat1 * nat1;
     private hourAlert: nat * nat * nat;
-
     operations
     public Alerta: nat1 * seq of char * seq of char * (nat1 * nat1 * nat1) * (nat * nat * nat) ==> Alerta
     Alerta(identificadorAlerta, tipoAlerta, mensageAlerta, diaAlerta, horaAlerta) ==
@@ -14,4 +13,9 @@ class Alerta
       messageAlert := mensageAlerta;
       dateAlert := diaAlerta;
       hourAlert := horaAlerta);
+      
+    -- Operación para obtener el ID de la alerta
+    public getID: () ==> nat1
+    getID() ==
+        return idAlert;
 end Alerta
