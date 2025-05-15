@@ -2,11 +2,25 @@ class Sensor
     instance variables
     protected idSensor: nat1;
     protected assetSensor: bool;
-    
+    protected alertas: map nat1 to Alerta := {|->}; -- Map vacío inicialmente
     
     operations
     public Sensor: nat1 * bool ==> Sensor
     Sensor(identificadorSensor, activoSensor) ==                            
      (idSensor := identificadorSensor;
-      assetSensor := activoSensor);
+      assetSensor := activoSensor;
+      alertas := {|->});
+      
+    -- Operación para añadir una alerta
+    public addAlerta: Alerta ==> ()
+    addAlerta(alerta) ==
+    (
+        alertas := alertas ++ {alerta.getID() |-> alerta}
+    )
+    pre alerta.getID() not in set dom alertas;
+    
+    -- Operación para obtener el ID del sensor
+    public getID: () ==> nat1
+    getID() ==
+        return idSensor;
 end Sensor
