@@ -1,11 +1,28 @@
 class SistemaControl
 instance variables
     private name: seq of char;
+    private trenes: map nat1 to Tren := {|->}; -- Map vacío inicialmente
     
 operations
     public SistemaControl: seq of char ==> SistemaControl
     SistemaControl(nombre) ==
     (
-        name := nombre
+        name := nombre;
+        trenes := {|->}
     );
+    
+    -- Operación para añadir un tren al sistema
+    public addTren: Tren ==> ()
+    addTren(tren) ==
+    (
+        trenes := trenes ++ {tren.getID() |-> tren}
+    )
+    pre tren.getID() not in set dom trenes;
+    
+    -- Operación para obtener un tren específico
+    public getTren: nat1 ==> [Tren]
+    getTren(id) ==
+        if id in set dom trenes
+        then return trenes(id)
+        else return nil;
 end SistemaControl
