@@ -1,0 +1,44 @@
+class ValidadorSistema
+instance variables
+  private totalTrenes: nat := 0;
+  private trenesVerificados: nat := 0;
+  private totalSensores: nat := 0;
+  private sensoresAsignados: nat := 0;
+
+operations
+  -- Constructor
+  public ValidadorSistema: () ==> ValidadorSistema
+  ValidadorSistema() == skip;
+
+  -- Definir el total esperado de trenes y sensores
+  public setTotales: nat * nat ==> ()
+  setTotales(totalT, totalS) ==
+  (
+    totalTrenes := totalT;
+    totalSensores := totalS
+  );
+
+  -- Registrar que un tren fue verificado
+  public registrarVerificacionTren: () ==> ()
+  registrarVerificacionTren() ==
+  (
+    trenesVerificados := trenesVerificados + 1
+  );
+
+  -- Registrar que un sensor fue asignado correctamente
+  public registrarSensorAsignado: () ==> ()
+  registrarSensorAsignado() ==
+  (
+    sensoresAsignados := sensoresAsignados + 1
+  );
+
+  -- Obtener el porcentaje de progreso de trenes verificados
+  public getProgresoTrenes: () ==> real
+  getProgresoTrenes() ==
+    return (if totalTrenes = 0 then 0 else (trenesVerificados * 100.0) / totalTrenes);
+
+  -- Obtener el porcentaje de progreso de sensores asignados
+  public getProgresoSensores: () ==> real
+  getProgresoSensores() ==
+    return (if totalSensores = 0 then 0 else (sensoresAsignados * 100.0) / totalSensores);
+end ValidadorSistema
