@@ -79,8 +79,9 @@ testSistemaControl() ==
     sistema1.addTren(tren1);
     sistema2.addTren(tren2);
     
-    -- Verificar que los trenes se añadieron correctamente
-    return sistema1.getTren(1001).getID() = 1001 and sistema2.getTren(1002).getID() = 1002
+    -- Verificar que los trenes se añadieron correctamente Y que getTren devuelve nil para IDs inexistentes
+    return sistema1.getTren(1001).getID() = 1001 and sistema2.getTren(1002).getID() = 1002 and
+           sistema1.getTren(9999) = nil and sistema2.getTren(8888) = nil
 );
 
 -- Test para la clase Tren
