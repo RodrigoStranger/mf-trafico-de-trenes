@@ -1,0 +1,200 @@
+class TestSuite
+
+operations
+
+-- Test para la clase Alerta
+public testAlerta: () ==> bool
+testAlerta() ==
+(
+    dcl alerta1: Alerta := new Alerta(1, "Emergencia", "Colision detectada", mk_(15, 5, 2024), mk_(14, 30, 0));
+    dcl alerta2: Alerta := new Alerta(2, "Advertencia", "Velocidad excesiva", mk_(16, 5, 2024), mk_(10, 15, 30));
+    dcl alerta3: Alerta := new Alerta(3, "Info", "Mantenimiento programado", mk_(17, 5, 2024), mk_(8, 0, 0));
+    
+    -- Verificar que se pueden crear alertas correctamente
+    return alerta1.getID() = 1 and alerta2.getID() = 2 and alerta3.getID() = 3
+);
+
+-- Test para la clase Sensor base
+public testSensor: () ==> bool
+testSensor() ==
+(
+    dcl sensor1: Sensor := new Sensor(101, true);
+    dcl sensor2: Sensor := new Sensor(102, false);
+    dcl alerta1: Alerta := new Alerta(1, "Emergencia", "Sensor activado", mk_(15, 5, 2024), mk_(14, 30, 0));
+    dcl alerta2: Alerta := new Alerta(2, "Advertencia", "Sensor desactivado", mk_(16, 5, 2024), mk_(10, 15, 30));
+    
+    -- Añadir alertas a sensor1
+    sensor1.addAlerta(alerta1);
+    sensor1.addAlerta(alerta2);
+    
+    -- Verificar IDs de sensores
+    return sensor1.getID() = 101 and sensor2.getID() = 102
+);
+
+-- Test para la clase SensorDeProximidad
+public testSensorDeProximidad: () ==> bool
+testSensorDeProximidad() ==
+(
+    -- Corregir constructores usando los parámetros correctos según la clase
+    dcl sensorProx1: SensorDeProximidad := new SensorDeProximidad(201, true, true, "Ultrasonico");
+    dcl sensorProx2: SensorDeProximidad := new SensorDeProximidad(202, false, false, "Infrarrojo");
+    dcl sensorProx3: SensorDeProximidad := new SensorDeProximidad(203, true, true, "Laser");
+    dcl alerta1: Alerta := new Alerta(10, "Proximidad", "Objeto detectado", mk_(15, 5, 2024), mk_(14, 30, 0));
+    
+    -- Añadir alerta
+    sensorProx1.addAlerta(alerta1);
+    
+    -- Verificar IDs (no podemos verificar getType ya que no existe ese método)
+    return sensorProx1.getID() = 201 and sensorProx2.getID() = 202 and sensorProx3.getID() = 203
+);
+
+-- Test para la clase SensorEntreTrenes
+public testSensorEntreTrenes: () ==> bool
+testSensorEntreTrenes() ==
+(
+    -- Corregir constructores usando los parámetros correctos según la clase
+    dcl sensorTren1: SensorEntreTrenes := new SensorEntreTrenes(301, true, 10.5, true);
+    dcl sensorTren2: SensorEntreTrenes := new SensorEntreTrenes(302, false, 0.0, false);
+    dcl sensorTren3: SensorEntreTrenes := new SensorEntreTrenes(303, true, 25.3, true);
+    dcl alerta1: Alerta := new Alerta(20, "Distancia", "Tren muy cerca", mk_(15, 5, 2024), mk_(14, 30, 0));
+    
+    -- Añadir alerta
+    sensorTren1.addAlerta(alerta1);
+    
+    -- Verificar IDs (no podemos verificar getType ya que no existe ese método)
+    return sensorTren1.getID() = 301 and sensorTren2.getID() = 302 and sensorTren3.getID() = 303
+);
+
+-- Test para la clase SistemaControl
+public testSistemaControl: () ==> bool
+testSistemaControl() ==
+(
+    -- Corregir constructor que usa seq of char, no nat1
+    dcl sistema1: SistemaControl := new SistemaControl("Sistema1");
+    dcl sistema2: SistemaControl := new SistemaControl("Sistema2");
+    dcl tren1: Tren := new Tren(1001, "Electrico", 100.0, 50.0);
+    dcl tren2: Tren := new Tren(1002, "Diesel", 120.0, 60.0);
+    
+    -- Añadir trenes a los sistemas para usar las variables
+    sistema1.addTren(tren1);
+    sistema2.addTren(tren2);
+    
+    -- Verificar que los trenes se añadieron correctamente
+    return sistema1.getTren(1001).getID() = 1001 and sistema2.getTren(1002).getID() = 1002
+);
+
+-- Test para la clase Tren
+public testTren: () ==> bool
+testTren() ==
+(
+    -- Corregir constructores usando todos los parámetros requeridos
+    dcl tren1: Tren := new Tren(5001, "Electrico", 100.5, 50.0);
+    dcl tren2: Tren := new Tren(5002, "Diesel", 120.0, 60.0);
+    dcl tren3: Tren := new Tren(5003, "Hibrido", 110.0, 55.0);
+    dcl sensor1: Sensor := new Sensor(501, true);
+    dcl sensor2: Sensor := new Sensor(502, false);
+    dcl sensorProx1: SensorDeProximidad := new SensorDeProximidad(503, true, true, "Ultrasonico");
+    dcl sensorTren1: SensorEntreTrenes := new SensorEntreTrenes(504, true, 15.0, true);
+    
+    -- Añadir sensores al tren1
+    tren1.addSensor(sensor1);
+    tren1.addSensor(sensor2);
+    
+    -- Añadir sensores al tren2
+    tren2.addSensor(sensorProx1);
+    tren2.addSensor(sensorTren1);
+    
+    -- Verificar IDs de trenes
+    return tren1.getID() = 5001 and tren2.getID() = 5002 and tren3.getID() = 5003
+);
+
+-- Test integrado que combina múltiples clases
+public testIntegracion: () ==> bool
+testIntegracion() ==
+(
+    -- Crear sistema de control
+    dcl sistemaControl: SistemaControl := new SistemaControl("SistemaIntegrado");
+    
+    -- Crear trenes con todos los parámetros
+    dcl trenElectrico: Tren := new Tren(1001, "Electrico", 150.0, 75.0);
+    dcl trenDiesel: Tren := new Tren(1002, "Diesel", 180.0, 90.0);
+    
+    -- Crear sensores de diferentes tipos con parámetros correctos
+    dcl sensorBase1: Sensor := new Sensor(2001, true);
+    dcl sensorBase2: Sensor := new Sensor(2002, false);
+    dcl sensorProx1: SensorDeProximidad := new SensorDeProximidad(3001, true, true, "Ultrasonico");
+    dcl sensorProx2: SensorDeProximidad := new SensorDeProximidad(3002, true, false, "Infrarrojo");
+    dcl sensorTren1: SensorEntreTrenes := new SensorEntreTrenes(4001, true, 20.5, true);
+    dcl sensorTren2: SensorEntreTrenes := new SensorEntreTrenes(4002, false, 0.0, false);
+    
+    -- Crear alertas
+    dcl alerta1: Alerta := new Alerta(100, "Emergencia", "Colision inminente", mk_(20, 5, 2024), mk_(15, 45, 30));
+    dcl alerta2: Alerta := new Alerta(101, "Advertencia", "Velocidad alta", mk_(20, 5, 2024), mk_(15, 46, 0));
+    dcl alerta3: Alerta := new Alerta(102, "Info", "Sensor activado", mk_(20, 5, 2024), mk_(15, 46, 30));
+    dcl alerta4: Alerta := new Alerta(103, "Proximidad", "Objeto detectado", mk_(20, 5, 2024), mk_(15, 47, 0));
+    dcl alerta5: Alerta := new Alerta(104, "Distancia", "Distancia critica", mk_(20, 5, 2024), mk_(15, 47, 30));
+    
+    -- Añadir alertas a sensores
+    sensorBase1.addAlerta(alerta1);
+    sensorBase2.addAlerta(alerta2);
+    sensorProx1.addAlerta(alerta3);
+    sensorProx2.addAlerta(alerta4);
+    sensorTren1.addAlerta(alerta5);
+    
+    -- Añadir sensores a los trenes
+    trenElectrico.addSensor(sensorProx1);
+    trenElectrico.addSensor(sensorTren1);
+    trenDiesel.addSensor(sensorProx2);
+    trenDiesel.addSensor(sensorTren2);
+    
+    -- Añadir trenes al sistema
+    sistemaControl.addTren(trenElectrico);
+    sistemaControl.addTren(trenDiesel);
+    
+    -- Verificar que todo se creó correctamente
+    return trenElectrico.getID() = 1001 and trenDiesel.getID() = 1002 and
+           sensorProx1.getID() = 3001 and sensorTren1.getID() = 4001
+);
+
+-- Test de casos límite y precondiciones
+public testCasosLimite: () ==> bool
+testCasosLimite() ==
+(
+    dcl sensor1: Sensor := new Sensor(1, true);
+    dcl sensor2: SensorDeProximidad := new SensorDeProximidad(2, false, false, "Test");
+    dcl tren: Tren := new Tren(1, "Test", 50.0, 25.0);
+    
+    -- Crear alertas con IDs únicos
+    dcl alerta1: Alerta := new Alerta(1, "Test1", "Mensaje1", mk_(1, 1, 2024), mk_(0, 0, 0));
+    dcl alerta2: Alerta := new Alerta(2, "Test2", "Mensaje2", mk_(31, 12, 2024), mk_(23, 59, 59));
+    
+    -- Añadir alertas (debe funcionar)
+    sensor1.addAlerta(alerta1);
+    sensor2.addAlerta(alerta2);
+    
+    -- Añadir sensores al tren
+    tren.addSensor(sensor1);
+    tren.addSensor(sensor2);
+    
+    -- Verificar que el tren tiene exactamente 2 sensores
+    return tren.hasCorrectNumberOfSensors()
+);
+
+-- Método principal que ejecuta todos los tests
+public runAllTests: () ==> bool
+runAllTests() ==
+(
+    dcl resultado1: bool := testAlerta();
+    dcl resultado2: bool := testSensor();
+    dcl resultado3: bool := testSensorDeProximidad();
+    dcl resultado4: bool := testSensorEntreTrenes();
+    dcl resultado5: bool := testSistemaControl();
+    dcl resultado6: bool := testTren();
+    dcl resultado7: bool := testIntegracion();
+    dcl resultado8: bool := testCasosLimite();
+    
+    return resultado1 and resultado2 and resultado3 and resultado4 and 
+           resultado5 and resultado6 and resultado7 and resultado8
+);
+
+end TestSuite
