@@ -142,19 +142,51 @@ system Tren, SistemaControl;</system>
 	<queries>
 		<query>
 			<formula>A[] (velocidad_tren &gt;= 0)</formula>
-			<comment>Verificar que la velocidad nunca sea negativa</comment>
+			<comment>Garantiza que la velocidad del tren nunca sea negativa en ningún estado del sistema</comment>
+			<result outcome="success" type="quality" timestamp="2025-06-24 10:06:34 -0500">
+			</result>
 		</query>
 		<query>
-			<formula>E&lt;&gt; (obstaculo_detectado and velocidad_tren &lt; 30)</formula>
-			<comment>Cuando hay obstáculo, la velocidad se reduce</comment>
+			<formula>A[] (obstaculo_detectado and distancia_detectada &lt; 50 imply Tren.Frenado)</formula>
+			<comment>Cuando se detecta un obstáculo muy cerca (menos de 50m), el tren debe estar en estado de frenado</comment>
+			<result outcome="success" type="quality" timestamp="2025-06-24 10:06:45 -0500">
+			</result>
 		</query>
 		<query>
-			<formula>E&lt;&gt; (distancia_detectada &lt; distancia_segura)</formula>
-			<comment>Es posible que la distancia sea menor a la segura</comment>
+			<formula>A[] (velocidad_tren &gt; limite_velocidad imply SistemaControl.Evaluando)</formula>
+			<comment>Si la velocidad excede el límite permitido, el sistema de control debe estar evaluando la situación</comment>
+			<result outcome="success" type="quality" timestamp="2025-06-24 10:06:51 -0500">
+			</result>
 		</query>
 		<query>
-			<formula>A[] (velocidad_tren &gt; limite_velocidad imply Tren.Reduciendo_Velocidad)</formula>
-			<comment>Si se excede el límite, el tren debe reducir velocidad</comment>
+			<formula>A[] (Tren.Frenado and obstaculo_detectado imply velocidad_tren &lt;= 30)</formula>
+			<comment>Durante el frenado con obstáculo detectado, la velocidad debe ser baja (≤30 km/h) para control seguro</comment>
+			<result outcome="success" type="quality" timestamp="2025-06-24 10:07:07 -0500">
+			</result>
+		</query>
+		<query>
+			<formula>A[] (distancia_detectada &lt; distancia_segura imply velocidad_tren &lt;= limite_velocidad)</formula>
+			<comment>Cuando la distancia es menor a la segura, la velocidad no debe exceder el límite establecido</comment>
+			<result outcome="success" type="quality" timestamp="2025-06-24 10:06:58 -0500">
+			</result>
+		</query>
+		<query>
+			<formula>A&lt;&gt; (obstaculo_detectado imply velocidad_tren == 0)</formula>
+			<comment>Si se detecta un obstáculo, eventualmente el tren se detendrá completamente</comment>
+			<result outcome="success" type="quality" timestamp="2025-06-24 10:07:18 -0500">
+			</result>
+		</query>
+		<query>
+			<formula>A&lt;&gt; (Tren.Frenado imply (Tren.Acelerando or Tren.Velocidad_Normal))</formula>
+			<comment>Después de frenar, el tren eventualmente podrá acelerar o mantener velocidad normal</comment>
+			<result outcome="success" type="quality" timestamp="2025-06-24 10:07:28 -0500">
+			</result>
+		</query>
+		<query>
+			<formula>E&lt;&gt; (Tren.Acelerando and velocidad_tren &lt; limite_velocidad)</formula>
+			<comment>Es posible alcanzar el estado de aceleración cuando la velocidad está por debajo del límite</comment>
+			<result outcome="success" type="quality" timestamp="2025-06-24 10:08:17 -0500">
+			</result>
 		</query>
 	</queries>
 </nta>
