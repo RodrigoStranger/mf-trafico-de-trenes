@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.6//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_6.dtd'>
+<nta>
+	<declaration>// Declaraciones globales
+clock tiempo;
+int velocidad_tren = 0;      // Velocidad del tren (km/h)
+int distancia_segura = 100;   // Distancia mínima de seguridad (metros)
+int distancia_detectada =150; // Distancia detectada al tren de adelante
+int limite_velocidad = 90;    // Límite de velocidad permitido
+bool obstaculo_detectado = false;
+
+// Canales de comunicación
+chan reducir_velocidad;
+chan frenar;
+chan acelerar;
+</declaration>
+	<template>
+		<name>Tren</name>
+		<declaration>// Variables locales del tren
+</declaration>
+		<location id="id0" x="-323" y="-119">
+			<name x="-280" y="-144">Velocidad_Normal</name>
+		</location>
+		<location id="id1" x="110" y="119">
+			<name x="127" y="102">Frenado</name>
+		</location>
+		<location id="id2" x="-654" y="25">
+			<name x="-756" y="16">Acelerando</name>
+		</location>
+		<init ref="id0"/>
+		<transition id="id3">
+			<source ref="id0"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-408" y="-357">reducir_velocidad?</label>
+			<label kind="assignment" x="-493" y="-399">velocidad_tren = velocidad_tren - 10,
+distancia_detectada = distancia_detectada + 10</label>
+			<nail x="-255" y="-331"/>
+			<nail x="-416" y="-331"/>
+		</transition>
+		<transition id="id4">
+			<source ref="id1"/>
+			<target ref="id2"/>
+			<label kind="guard" x="-340" y="136">!obstaculo_detectado</label>
+			<nail x="-246" y="127"/>
+		</transition>
+		<transition id="id5">
+			<source ref="id2"/>
+			<target ref="id0"/>
+			<label kind="guard" x="-476" y="0">velocidad_tren == limite_velocidad</label>
+			<nail x="-425" y="-8"/>
+		</transition>
+		<transition id="id6">
+			<source ref="id2"/>
+			<target ref="id2"/>
+			<label kind="guard" x="-782" y="76">velocidad_tren &lt; limite_velocidad &amp;&amp;
+distancia_detectada &gt; distancia_segura</label>
+			<label kind="assignment" x="-807" y="119">velocidad_tren = velocidad_tren + 5,
+distancia_detectada = distancia_detectada - 10</label>
+			<nail x="-705" y="76"/>
+			<nail x="-603" y="76"/>
+		</transition>
+		<transition id="id7">
+			<source ref="id0"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="-552" y="-85">acelerar?</label>
+		</transition>
+		<transition id="id8">
+			<source ref="id1"/>
+			<target ref="id1"/>
+			<label kind="guard" x="51" y="204">velocidad_tren &gt; 0 &amp;&amp;
+obstaculo_detectado</label>
+			<label kind="assignment" x="-17" y="178">velocidad_tren = velocidad_tren - 10</label>
+			<nail x="161" y="170"/>
+			<nail x="59" y="170"/>
+		</transition>
+		<transition id="id9">
+			<source ref="id0"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="-42" y="-8">frenar?</label>
+			<nail x="-68" y="8"/>
+		</transition>
+	</template>
+	<template>
+		<name>SistemaControl</name>
+		<declaration>// Variables del sistema de control
+clock reloj_control;</declaration>
+		<location id="id10" x="-211" y="-127">
+			<name x="-330" y="-144">Monitoreando</name>
+			<label kind="invariant" x="-382" y="-119">reloj_control &lt;= 2</label>
+		</location>
+		<location id="id11" x="552" y="-102">
+			<name x="569" y="-119">Evaluando</name>
+			<committed/>
+		</location>
+		<init ref="id10"/>
+		<transition id="id12">
+			<source ref="id11"/>
+			<target ref="id10"/>
+			<label kind="guard" x="85" y="8">obstaculo_detectado</label>
+			<label kind="synchronisation" x="127" y="42">frenar!</label>
+			<label kind="assignment" x="85" y="59">reloj_control = 0</label>
+			<nail x="297" y="34"/>
+			<nail x="-17" y="42"/>
+		</transition>
+		<transition id="id13">
+			<source ref="id11"/>
+			<target ref="id10"/>
+			<label kind="guard" x="-25" y="170">distancia_detectada &lt; distancia_segura</label>
+			<label kind="synchronisation" x="52" y="144">reducir_velocidad!</label>
+			<label kind="assignment" x="59" y="195">reloj_control = 0</label>
+			<nail x="450" y="144"/>
+			<nail x="-59" y="144"/>
+		</transition>
+		<transition id="id14">
+			<source ref="id11"/>
+			<target ref="id10"/>
+			<label kind="guard" x="-76" y="-467">velocidad_tren &gt; limite_velocidad &amp;&amp;
+!obstaculo_detectado</label>
+			<label kind="synchronisation" x="-17" y="-493">reducir_velocidad!</label>
+			<label kind="assignment" x="110" y="-416">reloj_control = 0</label>
+			<nail x="51" y="-416"/>
+		</transition>
+		<transition id="id15" color="#0000ff">
+			<source ref="id11"/>
+			<target ref="id10"/>
+			<label kind="guard" x="-17" y="-212">distancia_detectada &gt; distancia_segura &amp;&amp; 
+velocidad_tren &lt; limite_velocidad &amp;&amp;
+!obstaculo_detectado</label>
+			<label kind="synchronisation" x="85" y="-144">acelerar!</label>
+			<label kind="assignment" x="68" y="-238">reloj_control = 0</label>
+		</transition>
+		<transition id="id16">
+			<source ref="id10"/>
+			<target ref="id11"/>
+			<label kind="guard" x="93" y="-42">reloj_control &gt;= 2</label>
+			<label kind="assignment" x="93" y="-76">reloj_control = 0</label>
+			<nail x="161" y="-42"/>
+		</transition>
+	</template>
+	<system>// Declaración del sistema
+system Tren, SistemaControl;</system>
+	<queries>
+		<query>
+			<formula>A[] (velocidad_tren &gt;= 0)</formula>
+			<comment>Verificar que la velocidad nunca sea negativa</comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; (obstaculo_detectado and velocidad_tren &lt; 30)</formula>
+			<comment>Cuando hay obstáculo, la velocidad se reduce</comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; (distancia_detectada &lt; distancia_segura)</formula>
+			<comment>Es posible que la distancia sea menor a la segura</comment>
+		</query>
+		<query>
+			<formula>A[] (velocidad_tren &gt; limite_velocidad imply Tren.Reduciendo_Velocidad)</formula>
+			<comment>Si se excede el límite, el tren debe reducir velocidad</comment>
+		</query>
+	</queries>
+</nta>
