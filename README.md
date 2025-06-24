@@ -64,9 +64,6 @@ El directorio `Uppaal/Casos de prueba/` contiene varios escenarios de prueba, in
 
 ## 📝 Requisitos
 
-- Overture Tool para VDM++
+- VDMtoolbox 9.0.7
 - UPPAAL para modelos de tiempo real
 
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT.
